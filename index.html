@@ -81,21 +81,38 @@
     <footer class="py-10 text-center text-gray-400">
         <p>Hecho con ❤️ para un día inolvidable</p>
     </footer>
-
-    <script>
-        const targetDate = new Date("Feb 03, 2026 10:00:00").getTime();
+<script>
+    // Configura tu fecha aquí (Año, Mes - 1, Día, Hora, Minutos)
+    // Nota: Los meses en JavaScript empiezan en 0 (Enero es 0, Octubre es 9)
+    const targetDate = new Date(2026, 9, 25, 20, 0, 0).getTime();
+    
+    const updateCountdown = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
         
-        setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            
-            document.getElementById("cuenta-regresiva").innerHTML = `${days}d ${hours}h para festejar`;
-        }, 1000);
-    </script>
+        // Cálculos de tiempo
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Formatear para que siempre tengan 2 dígitos (ej: 05 en lugar de 5)
+        const format = (num) => num.toString().padStart(2, '0');
+
+        // Mostrar el resultado
+        document.getElementById("cuenta-regresiva").innerHTML = 
+            `${days}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
+        
+        // Si la cuenta termina
+        if (distance < 0) {
+            clearInterval(updateCountdown);
+            document.getElementById("cuenta-regresiva").innerHTML = "¡EMPEZÓ LA FIESTA! 🎉";
+        }
+    }, 1000);
+</script>
+   
 </body>
 
 </html>
+
 
