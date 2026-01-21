@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Mi Fiesta de Cumpleaños!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .font-cursive { font-family: 'Dancing+Script', cursive; }
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://e1.pxfuel.com/desktop-wallpaper/314/113/desktop-wallpaper-miniforce-super-dino-power-miniforce.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="hero-bg h-screen flex flex-col items-center justify-center text-center text-white px-4">
+        <h1 class="font-cursive text-6xl md:text-8xl mb-4">¡Mis 4 Años!</h1>
+        <p class="text-xl md:text-2xl uppercase tracking-widest mb-8">Estás invitado a celebrar conmigo</p>
+        <div class="bg-white/20 backdrop-blur-md p-6 rounded-lg border border-white/30">
+            <p class="text-3xl font-bold" id="cuenta-regresiva">Cargando fecha...</p>
+        </div>
+        <a href="#rsvp" class="mt-10 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+            Confirmar Asistencia
+        </a>
+    </header>
+
+    <section class="py-20 px-4 max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-12 text-gray-900">¿Cuándo y Dónde?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 bg-white shadow-xl rounded-2xl">
+                <div class="text-yellow-500 text-4xl mb-4">📅</div>
+                <h3 class="font-bold text-xl">Fecha</h3>
+                <p>03 de Febrero, 2026</p>
+            </div>
+            <div class="p-6 bg-white shadow-xl rounded-2xl">
+                <div class="text-yellow-500 text-4xl mb-4">⏰</div>
+                <h3 class="font-bold text-xl">Hora</h3>
+                <p>10:00 hrs</p>
+            </div>
+            <div class="p-6 bg-white shadow-xl rounded-2xl">
+                <div class="text-yellow-500 text-4xl mb-4">📍</div>
+                <h3 class="font-bold text-xl">Lugar</h3>
+                <p>Salón "La Terraza"<br>Calle Fiesta #123</p>
+                <a href="https://maps.google.com" target="_blank" class="text-blue-500 underline text-sm">Ver mapa</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp" class="bg-gray-900 py-20 px-4 text-white">
+        <div class="max-w-lg mx-auto">
+            <h2 class="text-4xl font-cursive text-center mb-8">Confirma tu lugar</h2>
+            <form action="#" class="space-y-4">
+                <div>
+                    <label class="block mb-1">Nombre Completo</label>
+                    <input type="text" class="w-full p-3 rounded bg-gray-800 border border-gray-700 focus:border-yellow-500 outline-none" placeholder="Tu nombre...">
+                </div>
+                <div>
+                    <label class="block mb-1">¿Asistirás?</label>
+                    <select class="w-full p-3 rounded bg-gray-800 border border-gray-700 outline-none">
+                        <option>¡Sí, ahí estaré!</option>
+                        <option>Lo siento, no puedo</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block mb-1">Restricciones Alimentarias</label>
+                    <input type="text" class="w-full p-3 rounded bg-gray-800 border border-gray-700 outline-none" placeholder="Alergias, vegetariano, etc.">
+                </div>
+                <button class="w-full bg-yellow-500 hover:bg-yellow-600 py-3 rounded font-bold text-gray-900 transition mt-4">
+                    Enviar Confirmación
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-gray-400">
+        <p>Hecho con ❤️ para un día inolvidable</p>
+    </footer>
+
+    <script>
+        const targetDate = new Date("Feb 03, 2026 10:00:00").getTime();
+        
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            document.getElementById("cuenta-regresiva").innerHTML = `${days}d ${hours}h para festejar`;
+        }, 1000);
+    </script>
+</body>
+</html>
